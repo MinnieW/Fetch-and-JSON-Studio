@@ -3,10 +3,10 @@ window.addEventListener("load", function () {
     fetch("https://handlers.education.launchcode.org/static/astronauts.json").then(function (response) {
         response.json().then(function (json) {
             let container = document.getElementById("container");
-            json.sort((a,b) => b.hoursInSpace - a.hoursInSpace)
+            json.sort((a, b) => b.hoursInSpace - a.hoursInSpace)
             for (astronaut of json) {
                 container.innerHTML +=
-                `<div class="astronaut">
+                    `<div class="astronaut">
                     <div class="bio">
                         <h3>${astronaut.firstName} ${astronaut.lastName}</h3>
                         <ul>
@@ -17,12 +17,13 @@ window.addEventListener("load", function () {
                     </div>
                     <img class="avatar" src=${astronaut.picture}>
             </div>`
-            if(astronaut.active === true){
-                document.getElementById(astronaut.id).style.color= "green"
+                if (astronaut.active === true) {
+                    document.getElementById(astronaut.id).style.color = "green"
+                }
             }
-            }
+            document.getElementById("count").innerHTML += `Total number of astronauts: ${Object.keys(json).length}`
             //console.log(json)
         })
-    //console.log(response.json())
+        //console.log(response.json())
     })
 })
